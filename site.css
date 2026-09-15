@@ -759,7 +759,6 @@ h1 em,h2 em,h3 em{font-style:italic;font-weight:400}
   .bases-grupo li{height:20px}
   .bases-grupo img{height:calc(20px * var(--e,1))}
   .bases-win{margin-top:8px}
-  .proof-label{margin:18px auto 8px}
   .reel{padding:4px 0 34px}
   .ig-post{flex:0 0 172px}
   .ig-midia img{object-position:50% 28%}
@@ -804,3 +803,7 @@ h1 em,h2 em,h3 em{font-style:italic;font-weight:400}
   .hero-bird-m svg{width:100%;height:auto;display:block}
   .hero-hr{margin-top:54px}
 }
+
+/* o carrossel começa logo depois das bases, sem rótulo */
+.reel{padding-top:18px}
+@media (max-width:640px){.reel{padding-top:10px}}
