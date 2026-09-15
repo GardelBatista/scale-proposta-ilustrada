@@ -37,12 +37,12 @@ $$('[data-focus-entry]').forEach(a => a.addEventListener('click', e => {
 }));
 
 /* ---------- parallax da paisagem (hero) ---------- */
-const land = $('.hero .land svg');
+const land = $('.hero .hero-art svg');
 if (land && !reduced && innerWidth > 720) {
   const L = { far: $('#l-far', land), mid: $('#l-mid', land), lake: $('#l-lake', land), near: $('#l-near', land), fore: $('#l-fore', land), bird: $('#l-bird', land) };
-  const F = { far: .04, mid: .07, lake: .1, near: .14, fore: .2, bird: -.06 };
+  const F = { far: .02, mid: .035, lake: .05, near: .07, fore: .1, bird: -.04 };
   let tick = false;
-  const par = () => { const y = Math.min(scrollY, 900); for (const k in L) if (L[k]) L[k].style.transform = `translateY(${-(y * F[k]).toFixed(1)}px)`; tick = false; };
+  const par = () => { const y = Math.min(scrollY, 600); for (const k in L) if (L[k]) L[k].style.transform = `translateY(${-(y * F[k]).toFixed(1)}px)`; tick = false; };
   addEventListener('scroll', () => { if (!tick) { tick = true; requestAnimationFrame(par); } }, { passive: true }); par();
 }
 
