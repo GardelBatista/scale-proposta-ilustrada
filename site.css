@@ -769,3 +769,24 @@ h1 em,h2 em,h3 em{font-style:italic;font-weight:400}
 .viewer-nav{display:flex;gap:8px;align-items:center;flex:none}
 .viewer-nav button{width:40px;height:40px;border-radius:50%;background:#fff;border:1px solid var(--line);font-size:16px;color:var(--ink);display:grid;place-items:center}
 .viewer-nav button:hover{border-color:var(--ink)}
+
+/* ---------- título fixo: sem altura reservada para a digitação ---------- */
+.hero h1{min-height:0}
+.hero h1 .caret{display:none}
+
+/* ---------- martim no hero: fora do fluxo, não empurra nada ---------- */
+.hero .wrap{position:relative}
+.hero-bird{position:absolute;right:-8px;top:34%;width:clamp(120px,13vw,190px);pointer-events:none;filter:drop-shadow(0 18px 22px rgba(25,30,71,.26));animation:voa 6s ease-in-out infinite}
+.hero-bird svg{width:100%;height:auto;display:block}
+@keyframes voa{50%{transform:translateY(-9px)}}
+@media (max-width:1180px){.hero-bird{right:-24px;top:30%;width:130px}}
+@media (max-width:640px){.hero-bird{display:none}}
+@media (prefers-reduced-motion:reduce){.hero-bird{animation:none}}
+
+/* martim pousado na linha divisória: só no celular, onde não há texto ao lado */
+.hero-bird-m{display:none}
+@media (max-width:640px){
+  .hero-bird-m{display:block;position:absolute;right:16px;width:64px;margin-top:6px;pointer-events:none;filter:drop-shadow(0 6px 8px rgba(25,30,71,.18))}
+  .hero-bird-m svg{width:100%;height:auto;display:block}
+  .hero-hr{margin-top:54px}
+}
