@@ -70,14 +70,29 @@ if (!reduced && 'IntersectionObserver' in window) {
   setTimeout(() => $$('.rv:not(.in)').forEach(el => el.classList.add('in')), 3000);
 } else $$('.rv').forEach(el => el.classList.add('in'));
 
+/* ---------- peças do acervo: caminho, nomes e navegação das lâminas ---------- */
+const src = (k, i = 0) => `assets/acervo/carrossel-${k}-${i}.webp`;
+const NAMES = { 'capa-serie': 'Capa de série', 'mito-verdade-cobalto': 'Mito · verdade', 'erro-grafite': 'Erro · grafite',
+  'declaracao-vinho': 'Declaração · vinho', 'glossario-pedra': 'Glossário · pedra', 'traducao-lavanda': 'Tradução · lavanda',
+  'linha-do-tempo': 'Linha do tempo', 'passos-linho': 'Passos · linho', 'editorial-sage': 'Editorial · sage',
+  'dado-destaque': 'Dado em destaque', 'trocas-bosque': 'Trocas · bosque', 'manifesto-oliva': 'Manifesto · oliva',
+  'aspas-creme': 'Aspas · creme' };
+let atual = null, lamina = 0;
+
 /* ---------- viewer ---------- */
 const modal = $('#viewer'), img = $('#result-image'), vid = $('#result-video');
 let prevFocus = null;
 function open() { prevFocus = document.activeElement; if (!modal.open) modal.showModal(); $('#close-viewer').focus(); }
+function pinta() {
+  img.src = src(atual, lamina); img.alt = `${NAMES[atual] || atual}, lâmina ${lamina + 1} de 3`;
+  $('#viewer-kind').textContent = `Carrossel · lâmina ${lamina + 1} de 3`;
+}
+function passa(d) { if (!atual) return; lamina = (lamina + d + 3) % 3; pinta(); }
 function showTemplate(key, slide) {
   vid.hidden = true; vid.pause(); vid.removeAttribute('src');
-  img.hidden = false; img.src = slide === 1 && key === 'editorial-sage' ? src(key, 1) : src(key); img.alt = NAMES[key] || key;
-  $('#viewer-kind').textContent = 'Carrossel · 4:5'; $('#viewer-title').textContent = NAMES[key] || key;
+  atual = key; lamina = +slide || 0;
+  img.hidden = false; pinta();
+  $('#viewer-title').textContent = NAMES[key] || key;
   $('#source-note').textContent = 'Peça real do acervo de templates. Marca fictícia de demonstração; conteúdo sujeito a revisão profissional.';
   open();
 }
@@ -95,6 +110,8 @@ document.addEventListener('click', e => {
   if (t.dataset.video) showVideo(t.dataset.video); else showTemplate(t.dataset.template, +(t.dataset.slide || 0));
 });
 $('#close-viewer').addEventListener('click', () => modal.close());
+$$('[data-lamina]').forEach(b => b.addEventListener('click', () => passa(+b.dataset.lamina)));
+modal.addEventListener('keydown', e => { if (e.key === 'ArrowRight') passa(1); if (e.key === 'ArrowLeft') passa(-1); });
 modal.addEventListener('click', e => { if (e.target === modal) modal.close(); });
-modal.addEventListener('close', () => { vid.pause(); if (prevFocus && prevFocus.isConnected) prevFocus.focus({ preventScroll: true }); });
+modal.addEventListener('close', () => { vid.pause(); atual = null; if (prevFocus && prevFocus.isConnected) prevFocus.focus({ preventScroll: true }); });
 })();

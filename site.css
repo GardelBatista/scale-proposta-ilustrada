@@ -764,3 +764,8 @@ h1 em,h2 em,h3 em{font-style:italic;font-weight:400}
   .equipe{gap:8px 14px;padding:14px}
   .equipe li{font-size:12.5px}
 }
+
+/* setas do visualizador de peças */
+.viewer-nav{display:flex;gap:8px;align-items:center;flex:none}
+.viewer-nav button{width:40px;height:40px;border-radius:50%;background:#fff;border:1px solid var(--line);font-size:16px;color:var(--ink);display:grid;place-items:center}
+.viewer-nav button:hover{border-color:var(--ink)}
