@@ -55,7 +55,8 @@ $$('[data-focus-entry]').forEach(a => a.addEventListener('click', e => {
 const land = $('.hero .land-svg');
 if (land && !reduced) {
   const L = { far: $('#l-far', land), mid: $('#l-mid', land), lake: $('#l-lake', land), near: $('#l-near', land), fore: $('#l-fore', land) };
-  const F = { far: .04, mid: .07, lake: .1, near: .14, fore: .2 };
+  const mob = innerWidth <= 640;
+  const F = mob ? { far: .02, mid: .035, lake: .05, near: .07, fore: .1 } : { far: .04, mid: .07, lake: .1, near: .14, fore: .2 };
   let tick = false;
   const par = () => { const y = Math.min(scrollY, 900); for (const k in L) if (L[k]) L[k].style.transform = `translateY(${-(y * F[k]).toFixed(1)}px)`; tick = false; };
   addEventListener('scroll', () => { if (!tick) { tick = true; requestAnimationFrame(par); } }, { passive: true }); par();
@@ -68,24 +69,6 @@ if (!reduced && 'IntersectionObserver' in window) {
   // rede de segurança: nada fica escondido se o observer não disparar
   setTimeout(() => $$('.rv:not(.in)').forEach(el => el.classList.add('in')), 3000);
 } else $$('.rv').forEach(el => el.classList.add('in'));
-
-/* ---------- exemplos por área ---------- */
-const CASES = {
-  nutricao: { cover: 'manifesto-oliva', detail: 'editorial-sage', label: 'Nutrição', title: 'Uma conversa sobre alimentação. Uma presença que acolhe.', text: 'Um tema que aparece no atendimento, apresentado em uma sequência para a pessoa ler, salvar e levar para a próxima conversa.', purpose: 'Educar sem transformar o post em uma consulta.' },
-  fisioterapia: { cover: 'frase-partida', detail: 'convite-jade', label: 'Fisioterapia', title: 'A boa orientação também começa pela escuta.', text: 'Uma mensagem de acolhimento abre a conversa sobre o cuidado. Explore o formato e adapte a mensagem ao seu contexto.', purpose: 'Aproximar sem prometer recuperação ou expor pacientes.' },
-  psicologia: { cover: 'pergunta-indigo', detail: 'trocas-bosque', label: 'Psicologia', title: 'Às vezes, uma frase abre espaço para uma conversa.', text: 'Uma peça de acolhimento, com respiro e uma mensagem simples. Sua comunicação pode ser humana sem expor histórias de pacientes.', purpose: 'Acolher sem prometer resultados ou expor pacientes.' },
-  consultorio: { cover: 'convite-jade', detail: 'glossario-pedra', label: 'Consultório', title: 'O cuidado pode começar antes do primeiro encontro.', text: 'Uma orientação visual para quem está chegando ao consultório. Dúvidas frequentes viram conteúdo útil, fácil de encontrar e compartilhar.', purpose: 'Orientar quem está chegando, sem promessas.' }
-};
-const NAMES = { 'editorial-sage': 'Editorial · sage', 'pergunta-indigo': 'Pergunta · índigo', 'dado-destaque': 'Dado em destaque', 'declaracao-vinho': 'Declaração · vinho', 'capa-serie': 'Capa de série', 'manifesto-oliva': 'Manifesto · oliva', 'frase-partida': 'Frase partida · coral', 'trocas-bosque': 'Trocas · bosque', 'convite-jade': 'Convite · jade', 'glossario-pedra': 'Glossário · pedra' };
-const src = (k, i = 0) => `assets/carrossel-${k}-${i}.webp`;
-$$('[data-case]').forEach(b => b.addEventListener('click', () => {
-  const c = CASES[b.dataset.case];
-  $$('[data-case]').forEach(x => { x.setAttribute('aria-selected', String(x === b)); x.tabIndex = x === b ? 0 : -1; });
-  $('#case-panel').setAttribute('aria-labelledby', b.id);
-  $('#case-cover').src = src(c.cover); $('#case-detail').src = c.detail === 'editorial-sage' ? src('editorial-sage', 1) : src(c.detail);
-  $('#case-label').textContent = c.label; $('#case-title').textContent = c.title; $('#case-text').textContent = c.text; $('#case-purpose').textContent = c.purpose;
-  $$('.ready-visual button')[0].dataset.template = c.cover; $$('.ready-visual button')[1].dataset.template = c.detail; $('#case-open').dataset.template = c.cover;
-}));
 
 /* ---------- viewer ---------- */
 const modal = $('#viewer'), img = $('#result-image'), vid = $('#result-video');
