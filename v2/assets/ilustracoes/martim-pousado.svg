@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200"><title>Martim-pescador MyDose Scale</title><defs><linearGradient id="mdorso" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#415FF5"/><stop offset=".5" stop-color="#2A3A9E"/><stop offset="1" stop-color="#191E47"/></linearGradient>
+<linearGradient id="masa" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3D55E0"/><stop offset=".55" stop-color="#22307E"/><stop offset="1" stop-color="#191E47"/></linearGradient>
+<linearGradient id="mpeito" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF9F88"/><stop offset="1" stop-color="#F56442"/></linearGradient>
+<linearGradient id="mcolar" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#F0ECF5"/></linearGradient></defs><path stroke="#6B3A1E" stroke-width="7" stroke-linecap="round" fill="none" d="M18 176 C66 162 122 168 200 152"/>
+<path fill="#191E47" d="M68 150 L42 180 L62 158 Z"/><path fill="#22307E" d="M74 154 L58 186 L78 160 Z"/>
+<path fill="url(#mdorso)" d="M70 150 C56 118 66 82 96 62 C112 50 136 46 150 55 C162 62 166 76 161 90 C158 99 151 104 143 105 C137 124 117 147 92 161 C82 165 74 160 70 150 Z"/>
+<path fill="url(#mpeito)" d="M94 161 C112 147 129 127 139 108 C145 100 153 96 159 93 C161 114 152 136 138 152 C126 162 108 167 94 161 Z"/>
+<path fill="#191E47" d="M158 74 L222 68 L160 80 Z"/><path fill="#D14D30" d="M160 80 L220 71 L162 86 Z" opacity=".92"/>
+<path fill="url(#mcolar)" d="M126 100 C136 94 150 94 158 99 C152 108 138 110 128 106 Z"/>
+<circle cx="141" cy="70" r="3.4" fill="#FFFFFF"/><circle cx="141.9" cy="70.3" r="2" fill="#191E47"/><circle cx="142.6" cy="69.5" r=".75" fill="#FFFFFF"/>
+<path fill="url(#masa)" d="M78 116 C84 93 101 79 123 81 C119 102 104 125 86 141 C80 137 76 127 78 116 Z"/>
+<g fill="#8699FD" opacity=".75"><circle cx="92" cy="104" r="1.9"/><circle cx="103" cy="95" r="1.9"/><circle cx="98" cy="117" r="1.9"/><circle cx="111" cy="106" r="1.9"/><circle cx="88" cy="127" r="1.7"/><circle cx="107" cy="87" r="1.6"/><circle cx="118" cy="97" r="1.5"/></g>
+<path stroke="#D14D30" stroke-width="2.2" stroke-linecap="round" fill="none" d="M92 161 L96 172 M102 158 L108 169"/></svg>
